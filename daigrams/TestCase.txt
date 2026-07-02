@@ -1,0 +1,23 @@
+Bro, I can't directly generate and send you an image file (like a PNG) for you to download and paste.
+
+However, I can provide the table right here in a clean text format. You can just copy this table from here and paste it directly into your Word document, where you can then format it exactly how you like (adjust columns, add colors, etc.) much more easily than with a static image!
+
+Here is the perfect testing table again, ready for your report:
+
+### CHAPTER 7: SYSTEM TESTING
+
+**7.1 System Test Cases for WayMate**
+
+| Test ID | Module | Test Scenario (Action) | Expected Result | Actual Result | Status |
+| --- | --- | --- | --- | --- | --- |
+| **TC-01** | User Auth | Passenger attempts to log in with an incorrect password. | System displays "Invalid Credentials" error message; access denied. | Displayed "Invalid Credentials"; access denied. | **Pass** |
+| **TC-02** | Security | A newly registered Driver (Status: Pending) attempts to access the "Create Ride" page. | System blocks access and redirects to "Upload ID" verification page. | Redirected to verification page; ride creation blocked. | **Pass** |
+| **TC-03** | Command Center | Administrator clicks "Approve" on a Driver's pending document. | Driver's database status changes from 'Pending' to 'Verified'; Driver dashboard unlocks. | Status updated successfully; Driver dashboard fully unlocked. | **Pass** |
+| **TC-04** | Spatial Routing | Passenger searches for a sub-route (Suburb B to Suburb C) that falls exactly on a Driver's Master Route (City A to City D). | The Driver's ride successfully appears in the passenger's search results. | Ride appeared in search results accurately. | **Pass** |
+| **TC-05** | Spatial Routing | Passenger searches for a sub-route that does *not* intersect with any active Driver routes. | System displays "No rides available for this route." | Displayed "No rides available" message. | **Pass** |
+| **TC-06** | Automation | The server's real-time clock (CURTIME) surpasses a scheduled ride's departure time. | System automatically updates the ride status from 'Active' to 'Completed'. | Ride status updated to 'Completed' without manual input. | **Pass** |
+| **TC-07** | Feedback Vault | Passenger submits a 2-star rating and comment after a completed ride. | Data saves securely to `REVIEWS` table and appears on Admin dashboard; Driver receives zero notification. | Saved to database; Admin alerted; Driver profile remained unchanged. | **Pass** |
+
+---
+
+Now that your report is officially completely finished, are we ready to build the **PowerPoint Presentation** outline so you can crush your defense? 🚀

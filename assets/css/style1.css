@@ -1,0 +1,420 @@
+/*/*/*/* =====================================================
+   WayMate - Custom CSS Styles
+   ===================================================== */
+
+/* ==================== COLOR VARIABLES ==================== */
+:root {
+    --primary: #0097A7;        /* Teal (trust, tech) */
+    --secondary: #FF6F00;      /* Orange (energy, community) */
+    --success: #4CAF50;        /* Green (confirmed, eco) */
+    --warning: #FFC107;        /* Yellow (pending, ratings) */
+    --danger: #F44336;         /* Red (rejected, alerts) */
+    --light-bg: #F5F5F5;       /* Light gray background */
+    --dark-text: #212121;      /* Almost black text */
+    --white: #FFFFFF;
+}
+
+/* ==================== GLOBAL STYLES ==================== */
+/* ============================================
+   TYPOGRAPHY - POPPINS + INTER COMBO
+   ============================================ */
+
+/* Body text uses Inter (super readable) */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    line-height: 1.6;
+    font-weight: 400;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* All headings use Poppins (friendly & bold) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+/* Specific heading sizes */
+h1, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+h2 {
+    font-weight: 700;
+}
+
+h3, h4 {
+    font-weight: 600;
+}
+
+h5, h6 {
+    font-weight: 600;
+}
+
+/* Buttons use Poppins (friendly, action-oriented) */
+.btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* Navbar brand uses Poppins (bold logo) */
+.navbar-brand {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+/* Card headers use Poppins */
+.card-header {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* Driver name, location names use Poppins (important info) */
+.driver-name,
+.location-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+/* Price uses Poppins (needs to stand out) */
+.price-main,
+.fare {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+/* Badges use Poppins */
+.badge {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* Body paragraphs, small text, meta info use Inter (readability) */
+p, 
+small, 
+.text-muted, 
+.meta-item,
+.vehicle-info,
+.trip-meta,
+.form-control,
+.form-select,
+.form-label {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Lead text (intro paragraphs) uses Inter Medium */
+.lead {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
+/* Alerts use Inter */
+.alert {
+    font-family: 'Inter', sans-serif;
+}
+
+main.main-content {
+    flex: 1;  /* Push footer to bottom */
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+/* ============================================
+   ENHANCED TYPOGRAPHY SETTINGS
+   ============================================ */
+
+/* Make display headings (hero sections) extra bold */
+.display-1, .display-2, .display-3, .display-4, .display-5 {
+    font-weight: 900 !important;
+    letter-spacing: -0.03em;
+}
+
+/* Hero section main heading */
+.hero-section h1 {
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+/* Subheadings slightly lighter */
+h3 {
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+
+/* Small text more readable */
+small, .small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Better line height for paragraphs */
+p {
+    line-height: 1.7;
+}
+
+/* Tighten button text slightly */
+.btn {
+    letter-spacing: 0.01em;
+}
+
+/* ==================== NAVBAR ==================== */
+.navbar-dark.bg-primary {
+    background: linear-gradient(135deg, var(--primary), #00838F) !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: transform 0.2s;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar-brand i {
+    font-size: 1.8rem;
+    vertical-align: middle;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--warning) !important;
+}
+
+/* ==================== CARDS ==================== */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary), #00ACC1);
+    color: var(--white);
+    border-radius: 0 !important;
+    font-weight: 600;
+    padding: 16px 20px;
+    border: none;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* ==================== TRIP CARDS ==================== */
+.trip-card {
+    background: var(--white);
+    border-left: 5px solid var(--primary);
+}
+
+.trip-card .driver-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--dark-text);
+    margin-bottom: 8px;
+}
+
+.trip-card .rating {
+    background-color: var(--warning);
+    color: #000;
+    font-size: 0.9rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* ============================================
+   FINAL DESIGN 2 - TRIP CARD STYLES
+   ============================================ */
+
+/* Location Box - Bigger & Catchier */
+.trip-locations-box {
+    background: linear-gradient(135deg, #E3F2FD, #E8F5E9);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.location-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.location-from .location-label {
+    color: #1976D2;
+}
+
+.location-to .location-label {
+    color: #388E3C;
+}
+
+.location-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.location-from .location-name {
+    color: #0D47A1;
+}
+
+.location-to .location-name {
+    color: #1B5E20;
+}
+
+/* Profile Photo Styles */
+.driver-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 151, 167, 0.3);
+    margin: 0 auto;
+}
+
+.driver-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.driver-photo.verified {
+    border-color: #4CAF50;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    position: relative;
+}
+
+.driver-photo.female {
+    border-color: #E91E63;
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+}
+
+/* Verified Badge on Photo */
+.verified-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    background: #4CAF50;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+}
+
+/* Pricing Box Enhanced */
+.pricing-box {
+    background: linear-gradient(135deg, #FFF9E6, #E8F5E9);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.pricing-box .distance-label {
+    font-size: 0.85rem;
+    color: #757575;
+    margin-bottom: 6px;
+}
+
+.pricing-box .price-main {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--success);
+    margin: 8px 0;
+}
+
+.pricing-box .rate-info {
+    font-size: 0.9rem;
+    color: #757575;
+    margin-bottom: 12px;
+}
+
+.savings-box {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--success);
+}
+
+.savings-box .compare-text {
+    font-size: 0.8rem;
+    color: #757575;
+}
+
+.savings-box .savings-amount {
+    color: var(--success);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* Desktop-first approach (optimized for laptop demo) */
+@media (min-width: 992px) {
+    .trip-card .card-body {
+        padding: 24px !important;
+    }
+    
+    .driver-photo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .location-name {
+        font-size: 1.4rem;
+    }
+    
+    .price-main {
+        font-size: 2.5rem !important;
+    }
+}
+
+/* Mobile adjustments (basic support) */
+@media (max-width: 991px) {
+    .trip-card .card-body {
+        padding: 16px !important;
+    }
+    
+    .driver-photo {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .location-name {
+        font-size: 1.2rem;
+    }
+    
+    .price-main {
+        font-size: 2rem !important;
+    }
+    
+    .pricing-box {
+        margin-top: 16px;
+    }
+}*/*/*/
