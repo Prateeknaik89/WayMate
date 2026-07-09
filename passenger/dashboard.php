@@ -310,10 +310,8 @@ function setupPassengerAutocomplete(inputId, dropdownId, latId, lonId) {
 }
 
 // Activate it for both Source and Destination
-document.addEventListener('DOMContentLoaded', function() {
-    setupPassengerAutocomplete('pickup', 'pickup-dropdown', 'pickup-lat', 'pickup-lon');
-    setupPassengerAutocomplete('destination', 'destination-dropdown', 'dest-lat', 'dest-lon');
-});
+setupPassengerAutocomplete('pass-source-input', 'pass-source-dropdown', 'search-source-lat', 'search-source-lon');
+setupPassengerAutocomplete('pass-dest-input', 'pass-dest-dropdown', 'search-dest-lat', 'search-dest-lon');
 </script>
 </main>
 

@@ -51,7 +51,24 @@
         Login to Dashboard
     </button>
 </form>
-
+ <div class="mt-8 pt-6 border-t border-slate-200">
+    <p class="text-[10px] text-center font-black text-slate-400 uppercase tracking-widest mb-4">Developer Magic Keys</p>
+    <div class="flex flex-wrap justify-center gap-3">
+        
+        <a href="actions/dev_bypass.php?role=passenger" class="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-xl text-xs font-bold hover:bg-indigo-100 transition-all shadow-sm">
+            🧪 Passenger
+        </a>
+        
+        <a href="actions/dev_bypass.php?role=driver" class="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-xl text-xs font-bold hover:bg-emerald-100 transition-all shadow-sm">
+            🚗 Driver
+        </a>
+        
+        <a href="actions/dev_bypass.php?role=admin" class="bg-rose-50 text-rose-700 px-4 py-2 rounded-xl text-xs font-bold hover:bg-rose-100 transition-all shadow-sm">
+            👑 Admin
+        </a>
+        
+    </div>
+</div>
 
         </form>
     </div>
