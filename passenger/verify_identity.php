@@ -105,7 +105,7 @@ include '../includes/header.php';
         <h1 class="text-4xl font-black text-slate-800 tracking-tight mb-3">Trust & Safety</h1>
         <p class="text-slate-500 font-medium max-w-lg mx-auto">
             <?php echo $role === 'driver' 
-                ? 'To ensure a safe community, all WayMate drivers must verify their driving credentials and identity before posting a ride.' 
+                ? 'To ensure a safe community, all WayMate drivers must verify their driving credentials and identity before posting a ride.PPPPPPP' 
                 : 'To ensure a safe community, all WayMate passengers must verify their identity before booking a ride.'; ?>
         </p>
     </div>
