@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $passenger_id = $_SESSION['user_id'];
-$ride_id = $_POST['ride_id'] ?? null;
+$trip_id = $_POST['trip_id'] ?? null;
 
 // 🚨 NEW: Catch the passenger's specific pickup and dropoff locations
 $pickup = $_POST['pickup_location'] ?? 'Not Specified';
