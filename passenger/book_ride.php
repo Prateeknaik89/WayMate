@@ -63,9 +63,9 @@ try {
         }
     }
 
-    // 4. 🚨 NEW: Insert the booking WITH the passenger's pickup and dropoff locations!
-    $insert_stmt = $pdo->prepare("INSERT INTO bookings (ride_id, passenger_id, pickup_location, dropoff_location, status) VALUES (?, ?, ?, ?, 'pending')");
-    $insert_stmt->execute([$ride_id, $passenger_id, $pickup, $dropoff]);
+        // 4. Update the INSERT statement to match your database column name (trip_id)
+        $insert_stmt = $pdo->prepare("INSERT INTO bookings (trip_id, passenger_id, pickup_location, dropoff_location, status) VALUES (?, ?, ?, ?, 'pending')");
+        $insert_stmt->execute([$ride_id, $passenger_id, $pickup, $dropoff]);
 
     $pdo->commit();
     $status = "success";
