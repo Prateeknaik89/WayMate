@@ -42,8 +42,14 @@ function uploadImage($fileKey, $prefix, $destFolder, $user_id) {
     $newFileName = $prefix . '_user_' . $user_id . '_' . time() . '.' . $fileExtension;
     $destPath = $uploadDir . $newFileName;
     
-    if (move_uploaded_file($fileTmpPath, $destPath)) return $newFileName;
-    return false;
+    // if (move_uploaded_file($fileTmpPath, $destPath)) return $newFileName;
+    // return false;
+    // Add this temporary debug block
+$debug_dir = realpath('../uploads/dl_proofs/'); 
+echo "Target Dir Absolute Path: " . $debug_dir . "<br>";
+echo "Is the folder writable by PHP? " . (is_writable($debug_dir) ? "YES" : "NO") . "<br>";
+echo "Current PHP User: " . get_current_user() . "<br>";
+exit(); // This stops the page here so you can see the results
 }
 
 // 2. Handle the Form Submission
