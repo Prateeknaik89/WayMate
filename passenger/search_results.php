@@ -170,7 +170,7 @@ include '../includes/header.php';
 
                             <?php if (isset($user['verification_status']) && $user['verification_status'] === 'verified'): ?>
                                 <form action="book_ride.php" method="POST" class="w-full">
-                                    <input type="hidden" name="trip_id" value="<?php echo $ride['ride_id']; ?>">
+                                    <input type="hidden" name="ride_id" value="<?php echo $ride['ride_id']; ?>">
                                     <input type="hidden" name="pickup_location" value="<?php echo htmlspecialchars($source_clean); ?>">
                                     <input type="hidden" name="dropoff_location" value="<?php echo htmlspecialchars($dest_clean); ?>">
                                     <button type="submit" class="w-full bg-slate-900 text-white px-6 py-5 rounded-[1.5rem] font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:bg-indigo-600 transition-all">

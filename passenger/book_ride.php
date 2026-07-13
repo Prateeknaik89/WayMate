@@ -9,7 +9,8 @@ if (!isset($_SESSION['user_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $passenger_id = $_SESSION['user_id'];
-$trip_id = $_POST['trip_id'] ?? null;
+// Use 'ride_id' here
+$ride_id = $_POST['ride_id'] ?? null; 
 
 // 🚨 NEW: Catch the passenger's specific pickup and dropoff locations
 $pickup = $_POST['pickup_location'] ?? 'Not Specified';
@@ -18,6 +19,9 @@ $dropoff = $_POST['dropoff_location'] ?? 'Not Specified';
 $message = "";
 $status = "error";
 
+
+
+// Make sure you update the validation check to use $ride_id
 if (!$ride_id) {
     header("Location: dashboard.php?error=invalid_ride");
     exit();
@@ -26,14 +30,15 @@ if (!$ride_id) {
 try {
     $pdo->beginTransaction();
 
-    // 2. Fetch the ride details 
+    // 2. Fetch the ride details using $trip_id
     $ride_stmt = $pdo->prepare("
         SELECT r.*, u.name as driver_name 
         FROM rides r
         JOIN users u ON r.driver_id = u.user_id
         WHERE r.ride_id = ? FOR UPDATE
     ");
-    $ride_stmt->execute([$ride_id]);
+    // Use $trip_id here instead of $ride_id
+    $ride_stmt->execute([$ride_id]); 
     $ride = $ride_stmt->fetch();
 
     if (!$ride) {
@@ -48,8 +53,8 @@ try {
         throw new Exception("You cannot book your own ride.");
     }
 
-    // 3. Check for existing booking
-    $check_stmt = $pdo->prepare("SELECT status FROM bookings WHERE ride_id = ? AND passenger_id = ?");
+    // 3. Check for existing booking using $trip_id
+    $check_stmt = $pdo->prepare("SELECT status FROM bookings WHERE trip_id = ? AND passenger_id = ?");
     $check_stmt->execute([$ride_id, $passenger_id]);
     $existing_booking = $check_stmt->fetch();
 
@@ -63,9 +68,9 @@ try {
         }
     }
 
-        // 4. Update the INSERT statement to match your database column name (trip_id)
-        $insert_stmt = $pdo->prepare("INSERT INTO bookings (trip_id, passenger_id, pickup_location, dropoff_location, status) VALUES (?, ?, ?, ?, 'pending')");
-        $insert_stmt->execute([$ride_id, $passenger_id, $pickup, $dropoff]);
+// Update the column name to 'ride_id' and the variable to '$ride_id'
+$insert_stmt = $pdo->prepare("INSERT INTO bookings (ride_id, passenger_id, pickup_location, dropoff_location, status) VALUES (?, ?, ?, ?, 'pending')");
+$insert_stmt->execute([$ride_id, $passenger_id, $pickup, $dropoff]);
 
     $pdo->commit();
     $status = "success";
