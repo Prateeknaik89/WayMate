@@ -24,18 +24,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // 4. Dynamic Redirect
                 if ($user['role'] === 'driver') {
                     header("Location: ../driver/dashboard.php");
-                } else {
+                } 
+                elseif ($user['role'] === 'passenger'){
                     header("Location: ../passenger/dashboard.php");
+                }
+                else {
+                    header("Location: ../admin/dashboard.php");
                 }
                 exit();
                 
             } else {
                 // Password incorrect
+                alert("Wrong Password!");
                 header("Location: ../index.php?error=wrong_password");
                 exit();
             }
         } else {
             // User not found
+            alert("Wrong username or password!");
             header("Location: ../index.php?error=user_not_found");
             exit();
         }

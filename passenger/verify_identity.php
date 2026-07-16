@@ -2,6 +2,7 @@
 session_start();
 require_once '../config/db.php';
 
+// Ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.php");
     exit();
@@ -26,28 +27,36 @@ function uploadImage($fileKey, $prefix, $destFolder, $user_id) {
     $fileSize = $_FILES[$fileKey]['size'];
     $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
     
+    // Security: Validate file type and size (5MB)
     $allowedExts = ['jpg', 'jpeg', 'png'];
-    if (!in_array($fileExtension, $allowedExts) || $fileSize > 5000000) return false; // 5MB limit
+    if (!in_array($fileExtension, $allowedExts) || $fileSize > 5000000) return false;
     
-    // Auto-create directory if it doesn't exist
+    // Auto-create directory with safe 0755 permissions
     $uploadDir = '../uploads/' . $destFolder . '/';
     if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
+        if (!mkdir($uploadDir, 0755, true)) {
+            return false; // Folder creation failed
+        }
     }
     
     $newFileName = $prefix . '_user_' . $user_id . '_' . time() . '.' . $fileExtension;
     $destPath = $uploadDir . $newFileName;
     
-    if (move_uploaded_file($fileTmpPath, $destPath)) return $newFileName;
-    return false;
+    // if (move_uploaded_file($fileTmpPath, $destPath)) return $newFileName;
+    // return false;
+    // Add this temporary debug block
+$debug_dir = realpath('../uploads/dl_proofs/'); 
+echo "Target Dir Absolute Path: " . $debug_dir . "<br>";
+echo "Is the folder writable by PHP? " . (is_writable($debug_dir) ? "YES" : "NO") . "<br>";
+echo "Current PHP User: " . get_current_user() . "<br>";
+exit(); // This stops the page here so you can see the results
 }
 
 // 2. Handle the Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $status === 'unverified') {
     
     if ($role === 'driver') {
-        // --- DRIVER LOGIC (DL Number + Media) ---
-        $dl_number = trim($_POST['dl_number']);
+        $dl_number = trim($_POST['dl_number'] ?? '');
         
         if (empty($dl_number)) {
             $error_message = "Please enter your Driving License number.";
@@ -56,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $status === 'unverified') {
             $selfie_filename = uploadImage('selfie', 'selfie', 'selfies', $user_id);
             
             if ($dl_filename && $selfie_filename) {
-                // Insert into documents vault with media paths
+                // Insert into documents vault
                 $insertDoc = $pdo->prepare("INSERT INTO user_documents (user_id, document_type, id_number, document_path, selfie_path) VALUES (?, 'driving_license', ?, ?, ?)");
                 $insertDoc->execute([$user_id, $dl_number, $dl_filename, $selfie_filename]);
                 
@@ -67,26 +76,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $status === 'unverified') {
                 $status = 'pending';
                 $success_message = "License and photos submitted securely. Under review.";
             } else {
-                $error_message = "Please upload valid JPG/PNG images under 5MB for both your License and Selfie.";
+                $error_message = "Upload failed: Please ensure images are JPG/PNG and under 5MB.";
             }
         }
     } else {
-        // --- PASSENGER LOGIC (Aadhaar Number Only) ---
-        $aadhaar = preg_replace('/[^0-9]/', '', $_POST['aadhaar_number']);
+        // --- PASSENGER LOGIC ---
+        // Sanitizing ID input by removing all non-numeric characters
+        $id_val = preg_replace('/[^0-9]/', '', $_POST['aadhaar_number'] ?? '');
         
-        if (strlen($aadhaar) !== 12) {
-            $error_message = "Please enter a valid 12-digit Aadhaar number.";
+        if (strlen($id_val) !== 12) {
+            $error_message = "Please enter a valid 12-digit number.";
         } else {
-            // Insert into documents vault (No media paths needed)
             $insertDoc = $pdo->prepare("INSERT INTO user_documents (user_id, document_type, id_number) VALUES (?, 'aadhaar', ?)");
-            $insertDoc->execute([$user_id, $aadhaar]);
+            $insertDoc->execute([$user_id, $id_val]);
             
-            // Update user status
             $updateUser = $pdo->prepare("UPDATE users SET verification_status = 'pending' WHERE user_id = ?");
             $updateUser->execute([$user_id]);
             
             $status = 'pending';
-            $success_message = "Aadhaar number submitted securely. Under review.";
+            $success_message = "ID number submitted securely. Under review.";
         }
     }
 }

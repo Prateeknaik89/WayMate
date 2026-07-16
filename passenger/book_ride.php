@@ -9,14 +9,11 @@ if (!isset($_SESSION['user_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $passenger_id = $_SESSION['user_id'];
-$ride_id = $_POST['ride_id'] ?? null;
+$ride_id = $_POST['ride_id'] ?? null; 
 
-// 🚨 NEW: Catch the passenger's specific pickup and dropoff locations
+// Capture locations
 $pickup = $_POST['pickup_location'] ?? 'Not Specified';
 $dropoff = $_POST['dropoff_location'] ?? 'Not Specified';
-
-$message = "";
-$status = "error";
 
 if (!$ride_id) {
     header("Location: dashboard.php?error=invalid_ride");
@@ -26,14 +23,14 @@ if (!$ride_id) {
 try {
     $pdo->beginTransaction();
 
-    // 2. Fetch the ride details 
+    // 2. Fetch the ride details using ride_id
     $ride_stmt = $pdo->prepare("
         SELECT r.*, u.name as driver_name 
         FROM rides r
         JOIN users u ON r.driver_id = u.user_id
         WHERE r.ride_id = ? FOR UPDATE
     ");
-    $ride_stmt->execute([$ride_id]);
+    $ride_stmt->execute([$ride_id]); 
     $ride = $ride_stmt->fetch();
 
     if (!$ride) {
@@ -48,7 +45,7 @@ try {
         throw new Exception("You cannot book your own ride.");
     }
 
-    // 3. Check for existing booking
+    // 3. CORRECTED: Check for existing booking using ride_id
     $check_stmt = $pdo->prepare("SELECT status FROM bookings WHERE ride_id = ? AND passenger_id = ?");
     $check_stmt->execute([$ride_id, $passenger_id]);
     $existing_booking = $check_stmt->fetch();
@@ -63,7 +60,7 @@ try {
         }
     }
 
-    // 4. 🚨 NEW: Insert the booking WITH the passenger's pickup and dropoff locations!
+    // 4. CORRECTED: Insert using ride_id
     $insert_stmt = $pdo->prepare("INSERT INTO bookings (ride_id, passenger_id, pickup_location, dropoff_location, status) VALUES (?, ?, ?, ?, 'pending')");
     $insert_stmt->execute([$ride_id, $passenger_id, $pickup, $dropoff]);
 
