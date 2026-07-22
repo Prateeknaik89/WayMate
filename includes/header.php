@@ -45,7 +45,7 @@ if (isset($_SESSION['user_id']) && isset($pdo)) {
         
         <div class="flex items-center gap-2 cursor-pointer group" onclick="window.location.href='../index.php'">
             <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black shadow-lg shadow-indigo-200 group-hover:scale-110 transition-transform">
-                <img src="web-logo/WayMate.png" alt="Website Logo" class="site-logo">
+                <img src="/web-logo/WayMate.png" alt="Website Logo" class="site-logo">
             </div>
             <span class="text-xl font-black tracking-tighter text-slate-800">WayMate</span>
         </div>
