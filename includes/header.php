@@ -44,11 +44,11 @@ if (isset($_SESSION['user_id']) && isset($pdo)) {
     <nav class="flex justify-between items-center px-6 md:px-12 py-5 bg-white/70 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
         
         <div class="flex items-center gap-2 cursor-pointer group" onclick="window.location.href='../index.php'">
-            <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black shadow-lg shadow-indigo-200 group-hover:scale-110 transition-transform">
-                <img src="/web-logo/WayMate.png" alt="Website Logo" class="site-logo">
-            </div>
-            <span class="text-xl font-black tracking-tighter text-slate-800">WayMate</span>
-        </div>
+    <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black shadow-lg shadow-indigo-200 group-hover:scale-110 transition-transform">
+        W
+    </div>
+    <span class="text-xl font-black tracking-tighter text-slate-800">WayMate</span>
+</div>
 
         <div class="hidden md:flex items-center gap-8 text-sm font-bold text-slate-500">
             

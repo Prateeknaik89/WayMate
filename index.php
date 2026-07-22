@@ -13,11 +13,11 @@
 
     <nav class="flex justify-between items-center px-6 py-5 sticky top-0 bg-white/90 backdrop-blur-md z-50 border-b border-slate-100">
         <div class="flex items-center gap-2">
-            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-200">
-                    //Added 6th june and not tested properly
-                <img src="WayMateLOGO.png" style="width: 10%; height: auto;"></div>
-            <span class="text-xl font-extrabold tracking-tight text-slate-800">WayMate</span>
-        </div>
+    <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-200">
+        W
+    </div>
+    <span class="text-xl font-extrabold tracking-tight text-slate-800">WayMate</span>
+</div>
         <div class="hidden md:flex gap-8 text-sm font-bold text-slate-500">
             <a href="#how" class="hover:text-indigo-600 transition">How it Works</a>
             <a href="#benefits" class="hover:text-indigo-600 transition">Benefits</a>

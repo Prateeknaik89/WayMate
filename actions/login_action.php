@@ -35,23 +35,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
             } else {
                 // Password incorrect
-                alert("Wrong Password!");
-                header("Location: ../index.php?error=wrong_password");
+                $_SESSION['login_error'] = "❌ Wrong password! Please try again.";
+                header("Location: ../index.php");
                 exit();
             }
         } else {
             // User not found
-            alert("Wrong username or password!");
-            header("Location: ../index.php?error=user_not_found");
+            $_SESSION['login_error'] = "❌ No account found with this phone number!";
+            header("Location: ../index.php");
             exit();
         }
 
     } catch (PDOException $e) {
-        die("Database error: " . $e->getMessage());
+        error_log($e->getMessage());
+        $_SESSION['login_error'] = "❌ Something went wrong. Please try again.";
+        header("Location: ../index.php");
+        exit();
     }
 } else {
-    // If someone tries to access this file directly
     header("Location: ../index.php");
     exit();
 }
 ?>
+
